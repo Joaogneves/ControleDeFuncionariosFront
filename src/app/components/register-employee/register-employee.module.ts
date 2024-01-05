@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RegisterEmployeeRoutingModule } from './register-employee-routing.module';
 import { RegisterEmployeeComponent } from './register-employee.component';
 import { FormsModule } from '@angular/forms';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RegisterEmployeeRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forChild(),
   ]
 })
 export class RegisterEmployeeModule { }

@@ -12,11 +12,11 @@
                     <label for="sobrenome">Sobrenome</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="CPF" placeholder="CPF" [(ngModel)]="employee.cpf">
+                    <input mask="000.000.000-00" type="text" class="form-control" id="CPF" placeholder="CPF" [(ngModel)]="employee.cpf">
                     <label for="CPF">CPF</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="CNPJ" placeholder="CNPJ" [(ngModel)]="employee.cnpj">
+                    <input mask="00.000.000/0000-00" type="text" class="form-control" id="CNPJ" placeholder="CNPJ" [(ngModel)]="employee.cnpj">
                     <label for="CNPJ">CNPJ</label>
                 </div>
                 <div class="form-floating mb-3">
