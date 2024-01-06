@@ -7,11 +7,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
+import { EmployeeComponent } from './components/employee/employee.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
