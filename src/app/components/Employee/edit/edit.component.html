@@ -1,0 +1,43 @@
+<div class="d-flex w-100 justify-content-center" style="height: 80vh;">
+    <div class="d-flex w-75">
+        <div class="col-4 p-5">
+            <h1 class="mb-4">{{employee.firstName + ' ' + employee.lastName}}</h1>
+            <h4 class="mb-4">{{employee.funcao}}</h4>
+            <h4 class="mb-4">{{employee.workPlace}}</h4>
+            <a class="btn btn-primary" href="funcionarios">Voltar</a>
+        </div>
+        <div class="col-8 p-5">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="nome" placeholder="Nome" [(ngModel)]="employee.firstName">
+                <label for="nome">Nome</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome"
+                    [(ngModel)]="employee.lastName">
+                <label for="sobrenome">Sobrenome</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input mask="000.000.000-00" type="text" class="form-control" disabled id="CPF" placeholder="CPF"
+                    [(ngModel)]="employee.cpf">
+                <label for="CPF">CPF</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input mask="00.000.000/0000-00" type="text" class="form-control" id="CNPJ" placeholder="CNPJ"
+                    [(ngModel)]="employee.cnpj">
+                <label for="CNPJ">CNPJ</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="Funcao" placeholder="Função" [(ngModel)]="employee.funcao">
+                <label for="Funcao">Função</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="work" placeholder="Local da obra"
+                    [(ngModel)]="employee.workPlace">
+                <label for="work">Local da obra</label>
+            </div>
+            <div class="d-flex justify-content-between btn-group">
+                <button class="btn btn-primary w-50" (click)="changeEmployee()">Salvar alterações</button>
+            </div>
+        </div>
+    </div>
+</div>

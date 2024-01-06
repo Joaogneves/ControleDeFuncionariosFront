@@ -31,4 +31,8 @@ export class EmployeeService {
   getById(id: string): Observable<EmployeeDto> {
     return this.http.get<EmployeeDto>(this.url + '/' + id)
   }
+
+  changeEmployee(employee: EmployeeDto): Observable<EmployeeDto> {
+    return this.http.put<EmployeeDto>(this.url, employee)
+  }
 }

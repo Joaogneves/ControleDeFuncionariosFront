@@ -5,6 +5,7 @@ export class EmployeeDto {
     cpf: string
     cnpj: string
     funcao: string
+    workPlace: string
 
     constructor() {
         this.id = ''
@@ -13,6 +14,7 @@ export class EmployeeDto {
         this.cpf = ''
         this.cnpj = ''
         this.funcao = ''
+        this.workPlace = ''
     }
 
  }

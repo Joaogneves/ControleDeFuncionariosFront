@@ -23,6 +23,10 @@
                     <input type="text" class="form-control" id="Funcao" placeholder="Função" [(ngModel)]="employee.funcao">
                     <label for="Funcao">Função</label>
                 </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="work" placeholder="Local da obra" [(ngModel)]="employee.workPlace">
+                    <label for="work">Local da obra</label>
+                </div>
                 <div class="d-flex justify-content-between btn-group">
                     <button class="btn btn-primary w-50" (click)="register()">Cadastrar</button>
                     <button class="btn btn-danger w-50" (click)="clear()">Limpar</button>

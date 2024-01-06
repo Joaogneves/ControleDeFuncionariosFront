@@ -29,7 +29,7 @@ export class RegisterEmployeeComponent {
               alert(`Funcionário ${this.employee.firstName} cadastrado`);
               this.route.navigate([''])
             }, 
-            error: err => console.log(err)
+            error: err => err.status === 500? alert('CPF ou CNPJ inválidos'): alert('Erro desconhecido ' + err.status)
         })
       }
   }

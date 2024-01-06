@@ -1,6 +1,10 @@
 <div class="d-flex w-100 justify-content-center" style="height: 80vh;">
     <div class="w-75 mt-3">
         <h2 class="mb-4 text-center">Funcionários</h2>
+        <div class="form-floating mb-3">
+            <input type="search" class="form-control" id="search" placeholder="Pesquisar" >
+            <label for="search">Procurar por Local da obra</label>
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
@@ -8,6 +12,7 @@
                     <th scope="col">CPF</th>
                     <th scope="col">CNPJ</th>
                     <th scope="col">Função</th>
+                    <th scope="col">Local da obra</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -17,6 +22,7 @@
                     <td>{{e.cpf}}</td>
                     <td>{{e.cnpj}}</td>
                     <td>{{e.funcao}}</td>
+                    <td>{{e.workPlace}}</td>
                     <td>
                         <a class="btn btn-primary me-2" routerLink="editar/{{e.id}}"><i class="bi bi-pencil"></i></a>
                         <a class="btn btn-primary" routerLink="funcionario/{{e.id}}"><i class="bi bi-clock"></i></a>
