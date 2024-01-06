@@ -35,4 +35,9 @@ export class EmployeeService {
   changeEmployee(employee: EmployeeDto): Observable<EmployeeDto> {
     return this.http.put<EmployeeDto>(this.url, employee)
   }
+
+  getByWorkplace(keyPress: string): Observable<EmployeeDto[]> {
+    return this.http.get<EmployeeDto[]>(`${this.url}/search?workplace=${keyPress}`)
+  }
+
 }

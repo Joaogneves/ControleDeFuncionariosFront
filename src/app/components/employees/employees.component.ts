@@ -12,10 +12,12 @@ export class EmployeesComponent {
 
   employees: EmployeeDto[];
   id: number;
+  searchKey:string
 
   constructor(private service: EmployeeService) {
     this.employees = []
     this.id = 0;
+    this.searchKey = '';
     this.getEmployees();
   }
 
@@ -26,9 +28,10 @@ export class EmployeesComponent {
       error: erro => {this.employees = []; alert(erro)}
     })
   }
-
-  teste() {
-    console.log('Clicou');
-    
+  search() {
+    this.service.getByWorkplace(this.searchKey).pipe(take(1)).subscribe({
+      next: (res:EmployeeDto[]) => {this.employees = res},
+      error: erro => {this.employees = []; alert(erro)}
+    })
   }
 }

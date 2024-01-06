@@ -2,7 +2,7 @@
     <div class="w-75 mt-3">
         <h2 class="mb-4 text-center">Funcionários</h2>
         <div class="form-floating mb-3">
-            <input type="search" class="form-control" id="search" placeholder="Pesquisar" >
+            <input type="search" class="form-control" id="search" placeholder="Pesquisar" (keyup)="search()" [(ngModel)]="searchKey">
             <label for="search">Procurar por Local da obra</label>
         </div>
         <table class="table table-hover">
