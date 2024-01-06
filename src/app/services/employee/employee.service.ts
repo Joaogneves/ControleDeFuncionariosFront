@@ -14,7 +14,7 @@ export class EmployeeService {
     }),
   };
 
-  url: string
+  private url: string
 
   constructor(private http: HttpClient) {
     this.url = 'http://localhost:8080/api/employee'

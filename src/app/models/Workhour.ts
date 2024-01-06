@@ -2,7 +2,7 @@ import { Time } from "@angular/common"
 
 export class WorkhourDto {
     id: string
-    workday: string
+    workDay: string
     entry: string
     leave: string
     breakInit: string
@@ -13,7 +13,7 @@ export class WorkhourDto {
 
     constructor() {
         this.id = ''
-        this.workday = ''
+        this.workDay = ''
         this.entry = ''
         this.leave = ''
         this.breakInit = ''

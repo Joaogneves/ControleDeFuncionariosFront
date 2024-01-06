@@ -5,29 +5,29 @@
             <h1 class="mb-4">{{employee.firstName + ' ' + employee.lastName}}</h1>
             <h4 class="mb-4">{{employee.funcao}}</h4>
             <h4 class="mb-4">{{employee.workPlace}}</h4>
-            <button class="btn btn-primary ms-2">Salvar horário</button>
+            <button class="btn btn-primary ms-2" (click)="save()">Salvar horário</button>
             <a class="btn btn-primary ms-2" href="funcionarios">Horários</a>
         </div>
         <div class="col-8 p-5">
             <div class="mb-2">
                 <label for="workday" class="form-label">Data</label>
-                <input type="date" class="form-control" id="workday">
+                <input type="date" class="form-control" id="workday" [(ngModel)]="workhour.workDay">
             </div>
             <div class="mb-2">
                 <label for="entry" class="form-label">Entrada</label>
-                <input type="time" class="form-control" id="entry">
+                <input type="time" class="form-control" id="entry" [(ngModel)]="workhour.entry">
             </div>
             <div class="mb-2">
-                <label for="entry" class="form-label">Almoço</label>
-                <input type="time" class="form-control" id="entry">
+                <label for="breakInit" class="form-label">Almoço</label>
+                <input type="time" class="form-control" id="breakInit" [(ngModel)]="workhour.breakInit">
             </div>
             <div class="mb-2">
-                <label for="entry" class="form-label">Retorno</label>
-                <input type="time" class="form-control" id="entry">
+                <label for="breakEnd" class="form-label">Retorno</label>
+                <input type="time" class="form-control" id="breakEnd" [(ngModel)]="workhour.breakEnd">
             </div>
             <div class="mb-2">
-                <label for="entry" class="form-label">Saida</label>
-                <input type="time" class="form-control" id="entry">
+                <label for="leave" class="form-label">Saida</label>
+                <input type="time" class="form-control" id="leave" [(ngModel)]="workhour.leave">
             </div>
             <button class="btn" (click)="extra()">
                 <div class="display-6">
@@ -46,12 +46,12 @@
             </button>
             <div class="mb-2 d-flex w-100" *ngIf="ext">
                 <div class="mb-2 w-50 me-1">
-                    <label for="entry" class="form-label">Inicio</label>
-                    <input type="time" class="form-control" id="entry">
+                    <label for="startExtra" class="form-label">Inicio</label>
+                    <input type="time" class="form-control" id="startExtra" [(ngModel)]="workhour.startExtra">
                 </div>
                 <div class="mb-2 w-50">
-                    <label for="entry" class="form-label">Fim</label>
-                    <input type="time" class="form-control" id="entry">
+                    <label for="endExtra" class="form-label">Fim</label>
+                    <input type="time" class="form-control" id="endExtra" [(ngModel)]="workhour.endExtra">
                 </div>
             </div>
         </div>
