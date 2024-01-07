@@ -1,0 +1,44 @@
+<div class="d-flex w-100 justify-content-center" style="height: 80vh;">
+    <div class="w-75 mt-3">
+        <h2 class="mb-4 text-center">Horários</h2>
+        <a class="btn btn-outline-dark px-4 py-2" routerLink="/funcionarios/funcionario/{{employeeId}}"><i class="bi bi-arrow-left"></i>Voltar</a>
+        <div class="d-flex justify-content-between">
+            <div>
+                <p><span class="fw-bold">Nome:</span> {{employee.firstName + ' ' + employee.lastName}}</p>
+                <p><span class="fw-bold">CPF:</span> {{employee.cpf}}</p>
+                <p><span class="fw-bold">Cargo:</span> {{employee.funcao}}</p>
+            </div>
+            <div>
+                <p><span class="fw-bold">CNPJ:</span> {{employee.cnpj}}</p>
+                <p><span class="fw-bold">Local da Obra:</span> {{employee.workPlace}}</p>
+                <p></p>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Entrada</th>
+                    <th scope="col">Almoço</th>
+                    <th scope="col">Retorno</th>
+                    <th scope="col">Saida</th>
+                    <th scope="col">Hora extra</th>
+                    <th scope="col">Feriado</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                <tr *ngFor="let w of works">
+                    <td>{{w.workDay}}</td>
+                    <td>{{w.entry}}</td>
+                    <td>{{w.breakInit}}</td>
+                    <td>{{w.breakEnd}}</td>
+                    <td>{{w.leave}}</td>
+                    <td>{{w.startExtra == null? '': w.startExtra + '/' + w.endExtra}}</td>
+                    <td>
+                        {{w.itsHoliday ? 'Feriado': ''}} {{w.missing ? 'Falta': '' }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

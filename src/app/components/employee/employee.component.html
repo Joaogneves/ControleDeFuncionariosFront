@@ -1,57 +1,95 @@
 <div class="d-flex w-100 justify-content-center" style="height: 80vh;">
     <div class="d-flex w-75">
         <div class="col-4 p-5">
-            <a class="btn px-4 py-2" href="funcionarios"><i class="bi bi-arrow-left"></i>Voltar</a>
+            <a class="btn btn-outline-dark px-4 py-2" href="funcionarios"><i class="bi bi-arrow-left"></i>Voltar</a>
             <h1 class="mb-4">{{employee.firstName + ' ' + employee.lastName}}</h1>
             <h4 class="mb-4">{{employee.funcao}}</h4>
             <h4 class="mb-4">{{employee.workPlace}}</h4>
-            <button class="btn btn-primary ms-2" (click)="save()">Salvar horário</button>
-            <a class="btn btn-primary ms-2" href="funcionarios">Horários</a>
+            <button class="btn btn-outline-primary ms-2" (click)="save()">Salvar horário</button>
+            <a class="btn btn-outline-primary ms-2" href="horarios/{{employee.id}}">Horários</a>
         </div>
         <div class="col-8 p-5">
+            <button class="btn" (click)="setMissing()" *ngIf="!holiday">
+                <div class="d-flex w-25 justify-content-between align-items-center">
+                    Falta
+                    <div class="display-6 ms-4">
+                        <i class="bi bi-toggle-on" *ngIf="missing"></i>
+                        <i class="bi bi-toggle-off" *ngIf="!missing"></i>
+                    </div>
+                </div>
+            </button>
+            <button class="btn" (click)="setHoliday()" *ngIf="!missing">
+                <div class="d-flex w-25 justify-content-between align-items-center">
+                    Feriado
+                    <div class="display-6 ms-4">
+                        <i class="bi bi-toggle-on" *ngIf="holiday"></i>
+                        <i class="bi bi-toggle-off" *ngIf="!holiday"></i>
+                    </div>
+                </div>
+            </button>
             <div class="mb-2">
                 <label for="workday" class="form-label">Data</label>
                 <input type="date" class="form-control" id="workday" [(ngModel)]="workhour.workDay">
             </div>
-            <div class="mb-2">
-                <label for="entry" class="form-label">Entrada</label>
-                <input type="time" class="form-control" id="entry" [(ngModel)]="workhour.entry">
-            </div>
-            <div class="mb-2">
-                <label for="breakInit" class="form-label">Almoço</label>
-                <input type="time" class="form-control" id="breakInit" [(ngModel)]="workhour.breakInit">
-            </div>
-            <div class="mb-2">
-                <label for="breakEnd" class="form-label">Retorno</label>
-                <input type="time" class="form-control" id="breakEnd" [(ngModel)]="workhour.breakEnd">
-            </div>
-            <div class="mb-2">
-                <label for="leave" class="form-label">Saida</label>
-                <input type="time" class="form-control" id="leave" [(ngModel)]="workhour.leave">
-            </div>
-            <button class="btn" (click)="extra()">
-                <div class="display-6">
-                    Hora extra
-                    <i class="bi bi-toggle-on" *ngIf="ext100"></i>
-                    <i class="bi bi-toggle-off" *ngIf="!ext100"></i>
+            <div *ngIf="!missing && !holiday">
+                <div class="mb-2">
+                    <label for="entry" class="form-label">Entrada</label>
+                    <input type="time" class="form-control" id="entry" [(ngModel)]="workhour.entry">
                 </div>
-            </button>
-            <button class="btn" (click)="extra50()" *ngIf="ext100">
-                <div class="display-6">
-                    100%
-                    <i class="bi bi-toggle-on" *ngIf="ext"></i>
-                    <i class="bi bi-toggle-off" *ngIf="!ext"></i>
-                    50%
+                <div class="mb-2">
+                    <label for="breakInit" class="form-label">Almoço</label>
+                    <input type="time" class="form-control" id="breakInit" [(ngModel)]="workhour.breakInit">
                 </div>
-            </button>
-            <div class="mb-2 d-flex w-100" *ngIf="ext">
-                <div class="mb-2 w-50 me-1">
-                    <label for="startExtra" class="form-label">Inicio</label>
-                    <input type="time" class="form-control" id="startExtra" [(ngModel)]="workhour.startExtra">
+                <div class="mb-2">
+                    <label for="breakEnd" class="form-label">Retorno</label>
+                    <input type="time" class="form-control" id="breakEnd" [(ngModel)]="workhour.breakEnd">
                 </div>
-                <div class="mb-2 w-50">
-                    <label for="endExtra" class="form-label">Fim</label>
-                    <input type="time" class="form-control" id="endExtra" [(ngModel)]="workhour.endExtra">
+                <div class="mb-2">
+                    <label for="leave" class="form-label">Saida</label>
+                    <input type="time" class="form-control" id="leave" [(ngModel)]="workhour.leave">
+                </div>
+                <button class="btn" (click)="extra()">
+                    <div class="display-6">
+                        Hora extra
+                        <i class="bi bi-toggle-on" *ngIf="ext100"></i>
+                        <i class="bi bi-toggle-off" *ngIf="!ext100"></i>
+                    </div>
+                </button>
+                <button class="btn" (click)="extra50()" *ngIf="ext100">
+                    <div class="display-6">
+                        100%
+                        <i class="bi bi-toggle-on" *ngIf="ext"></i>
+                        <i class="bi bi-toggle-off" *ngIf="!ext"></i>
+                        50%
+                    </div>
+                </button>
+                <div class="mb-2 d-flex w-100" *ngIf="ext">
+                    <div class="mb-2 w-50 me-1">
+                        <label for="startExtra" class="form-label">Inicio</label>
+                        <input type="time" class="form-control" id="startExtra" [(ngModel)]="workhour.startExtra">
+                    </div>
+                    <div class="mb-2 w-50">
+                        <label for="endExtra" class="form-label">Fim</label>
+                        <input type="time" class="form-control" id="endExtra" [(ngModel)]="workhour.endExtra">
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="missing || holiday">
+                <div class="mb-2">
+                    <label for="entry" class="form-label">Entrada</label>
+                    <input type="time" class="form-control" id="entry" [(ngModel)]="workhour.entry" disabled>
+                </div>
+                <div class="mb-2">
+                    <label for="breakInit" class="form-label">Almoço</label>
+                    <input type="time" class="form-control" id="breakInit" [(ngModel)]="workhour.breakInit" disabled>
+                </div>
+                <div class="mb-2">
+                    <label for="breakEnd" class="form-label">Retorno</label>
+                    <input type="time" class="form-control" id="breakEnd" [(ngModel)]="workhour.breakEnd" disabled>
+                </div>
+                <div class="mb-2">
+                    <label for="leave" class="form-label">Saida</label>
+                    <input type="time" class="form-control" id="leave" [(ngModel)]="workhour.leave" disabled>
                 </div>
             </div>
         </div>

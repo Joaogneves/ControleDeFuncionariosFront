@@ -18,6 +18,8 @@ export class EmployeeComponent {
   ext: boolean;
   ext100: boolean
   id: string | null;
+  missing: boolean
+  holiday: boolean
 
   constructor(private employeeService: EmployeeService, private activateRoute: ActivatedRoute, private workService: WorkhourService, private router: Router) {
     this.employee = new EmployeeDto();
@@ -26,6 +28,8 @@ export class EmployeeComponent {
     this.getById(String(this.id));
     this.ext = false;
     this.ext100 = false
+    this.missing = false
+    this.holiday = false
   }
 
   getById(id: string) {
@@ -47,16 +51,33 @@ export class EmployeeComponent {
   }
 
   save() {
+    if(this.missing) {
+      this.workhour.missing = true;
+      this.workhour.entry = '00:00'
+      this.workhour.breakInit = '00:00'
+      this.workhour.breakEnd = '00:00'
+      this.workhour.leave = '00:00'
+      this.workhour.startExtra = '00:00'
+      this.workhour.endExtra = '00:00'
+    } 
     if(this.ext100 && !this.ext) {
-      this.workhour.itsHolliday = true
+      this.workhour.itsHoliday = true
       this.workhour.startExtra = null
       this.workhour.endExtra = null
     } else if(this.ext100 && this.ext) {
       this.workhour.startExtra = this.workhour.leave
-      this.workhour.itsHolliday = false
+      this.workhour.itsHoliday = false
     }
     this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
       next: res => {alert('Horário salvo'); this.router.navigate(['funcionarios'])}
     })
+  }
+
+  setMissing() {
+    this.missing = !this.missing;
+  }
+
+  setHoliday() {
+    this.holiday = !this.holiday
   }
 }

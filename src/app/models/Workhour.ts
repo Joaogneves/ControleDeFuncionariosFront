@@ -1,4 +1,4 @@
-import { Time } from "@angular/common"
+import { EmployeeDto } from "./Employee"
 
 export class WorkhourDto {
     id: string
@@ -9,7 +9,8 @@ export class WorkhourDto {
     breakEnd: string
     startExtra: string | null
     endExtra: string | null
-    itsHolliday: boolean
+    itsHoliday: boolean
+    missing: boolean
 
     constructor() {
         this.id = ''
@@ -20,6 +21,16 @@ export class WorkhourDto {
         this.breakEnd = ''
         this.startExtra = null
         this.endExtra = null
-        this.itsHolliday = false
+        this.itsHoliday = false
+        this.missing = false
+    }
+}
+
+export class WorkhourResponseDto extends WorkhourDto {
+    employee: EmployeeDto
+
+    constructor() {
+        super()
+        this.employee = new EmployeeDto()
     }
 }
