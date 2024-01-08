@@ -34,13 +34,13 @@ export class EmployeeComponent {
 
   getById(id: string) {
     this.employeeService.getById(id).pipe(take(1)).subscribe({
-      next: (res:EmployeeDto) => {this.employee = res},
-      error: err => {this.employee = new EmployeeDto(); alert(err)}
+      next: (res: EmployeeDto) => { this.employee = res },
+      error: err => { this.employee = new EmployeeDto(); alert(err) }
     })
   }
 
   extra() {
-    if(this.ext && this.ext100) {
+    if (this.ext && this.ext100) {
       this.ext = !this.ext
     }
     this.ext100 = !this.ext100
@@ -51,7 +51,7 @@ export class EmployeeComponent {
   }
 
   save() {
-    if(this.missing) {
+    if (this.missing) {
       this.workhour.missing = true;
       this.workhour.entry = '00:00'
       this.workhour.breakInit = '00:00'
@@ -59,18 +59,22 @@ export class EmployeeComponent {
       this.workhour.leave = '00:00'
       this.workhour.startExtra = '00:00'
       this.workhour.endExtra = '00:00'
-    } 
-    if(this.ext100 && !this.ext) {
+    }
+    if (this.ext100 && !this.ext) {
       this.workhour.itsHoliday = true
       this.workhour.startExtra = null
       this.workhour.endExtra = null
-    } else if(this.ext100 && this.ext) {
+    } else if (this.ext100 && this.ext) {
       this.workhour.startExtra = this.workhour.leave
       this.workhour.itsHoliday = false
     }
-    this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
-      next: res => {alert('Horário salvo'); this.router.navigate(['funcionarios'])}
-    })
+    if (!this.isNull()) {
+      this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
+        next: res => { alert('Horário salvo'); this.router.navigate(['funcionarios']) }
+      })
+    } else {
+      alert('Preencha todos os campos')
+    }
   }
 
   setMissing() {
@@ -79,5 +83,15 @@ export class EmployeeComponent {
 
   setHoliday() {
     this.holiday = !this.holiday
+  }
+
+  private isNull(): boolean {
+    return (
+      this.workhour.workDay == '' ||
+      this.workhour.entry == '' ||
+      this.workhour.leave == '' ||
+      this.workhour.breakInit == '' ||
+      this.workhour.breakEnd == ''
+    )
   }
 }
