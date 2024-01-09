@@ -20,4 +20,8 @@ export class WorkhourService {
   getByEmployee(employeeId: string): Observable<WorkhourResponseDto[]> {
     return this.http.get<WorkhourResponseDto[]>(`${this.url}/employee/${employeeId}`)
   }
+
+  delete(id: string) {
+    return this.http.delete(`${this.url}/${id}`)
+  }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { WorkhourService } from '../../../services/workhour/workhour.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs';
 import { WorkhourResponseDto } from '../../../models/Workhour';
 import { EmployeeDto } from '../../../models/Employee';
@@ -16,7 +16,7 @@ export class HoursComponent {
   works: WorkhourResponseDto[]
   employee: EmployeeDto
   employeeId: string | null
-  constructor(private service: WorkhourService, private activatedRoute: ActivatedRoute, private eService: EmployeeService) {
+  constructor(private service: WorkhourService, private activatedRoute: ActivatedRoute, private eService: EmployeeService, private router: Router) {
     this.employeeId = activatedRoute.snapshot.paramMap.get('id');
     this.works = [];
     this.employee = new EmployeeDto();
@@ -34,6 +34,12 @@ export class HoursComponent {
   getEmployee() {
     this.eService.getById(String(this.employeeId)).pipe(take(1)).subscribe({
       next: (res: EmployeeDto) => {this.employee = res}
+    })
+  }
+
+  delete(id: string) {
+    this.service.delete(id).subscribe({
+      next: res => {this.router.navigate(['funcionarios'])}
     })
   }
 }
