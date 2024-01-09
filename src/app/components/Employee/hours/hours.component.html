@@ -24,6 +24,7 @@
                     <th scope="col">Saida</th>
                     <th scope="col">Hora extra</th>
                     <th scope="col">Feriado</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -37,6 +38,7 @@
                     <td>
                         {{w.itsHoliday ? 'Feriado': ''}} {{w.missing ? 'Falta': '' }}
                     </td>
+                    <td><a class="btn btn-outline-danger"><i class="bi bi-trash"></i></a></td>
                 </tr>
             </tbody>
         </table>
