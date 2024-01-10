@@ -60,6 +60,15 @@ export class EmployeeComponent {
       this.workhour.startExtra = '00:00'
       this.workhour.endExtra = '00:00'
     }
+    if(this.holiday) {
+      this.workhour.itsHoliday = true;
+      this.workhour.entry = '00:00'
+      this.workhour.breakInit = '00:00'
+      this.workhour.breakEnd = '00:00'
+      this.workhour.leave = '00:00'
+      this.workhour.startExtra = '00:00'
+      this.workhour.endExtra = '00:00'
+    }
     if (this.ext100 && !this.ext) {
       this.workhour.itsHoliday = true
       this.workhour.startExtra = null
@@ -68,6 +77,7 @@ export class EmployeeComponent {
       this.workhour.startExtra = this.workhour.leave
       this.workhour.itsHoliday = false
     }
+    console.log(this.workhour);
     if (!this.isNull()) {
       this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
         next: res => { alert('Horário salvo'); this.router.navigate(['funcionarios']) }
