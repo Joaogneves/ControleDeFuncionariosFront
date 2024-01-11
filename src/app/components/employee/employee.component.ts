@@ -20,7 +20,7 @@ export class EmployeeComponent {
   id: string | null;
   missing: boolean
   holiday: boolean
-
+  status: string[];
   constructor(private employeeService: EmployeeService, private activateRoute: ActivatedRoute, private workService: WorkhourService, private router: Router) {
     this.employee = new EmployeeDto();
     this.workhour = new WorkhourDto();
@@ -30,6 +30,7 @@ export class EmployeeComponent {
     this.ext100 = false
     this.missing = false
     this.holiday = false
+    this.status = ['Feriado', 'Feriado 100%', 'Folga', 'Folga 100%', 'Falta', 'Sábado', 'Domingo'];
   }
 
   getById(id: string) {
@@ -61,7 +62,7 @@ export class EmployeeComponent {
       this.workhour.endExtra = '00:00'
     }
     if(this.holiday) {
-      this.workhour.itsHoliday = true;
+      this.workhour.isHoliday = true;
       this.workhour.entry = '00:00'
       this.workhour.breakInit = '00:00'
       this.workhour.breakEnd = '00:00'
@@ -70,12 +71,12 @@ export class EmployeeComponent {
       this.workhour.endExtra = '00:00'
     }
     if (this.ext100 && !this.ext) {
-      this.workhour.itsHoliday = true
+      this.workhour.isHoliday = true
       this.workhour.startExtra = null
       this.workhour.endExtra = null
     } else if (this.ext100 && this.ext) {
       this.workhour.startExtra = this.workhour.leave
-      this.workhour.itsHoliday = false
+      this.workhour.isHoliday = false
     }
     console.log(this.workhour);
     if (!this.isNull()) {

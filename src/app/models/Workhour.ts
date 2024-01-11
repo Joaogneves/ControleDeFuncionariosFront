@@ -9,8 +9,10 @@ export class WorkhourDto {
     breakEnd: string
     startExtra: string | null
     endExtra: string | null
-    itsHoliday: boolean
+    isHoliday: boolean
     missing: boolean
+    satuday: boolean
+    sunday: boolean
 
     constructor() {
         this.id = ''
@@ -21,8 +23,10 @@ export class WorkhourDto {
         this.breakEnd = ''
         this.startExtra = null
         this.endExtra = null
-        this.itsHoliday = false
+        this.isHoliday = false
         this.missing = false
+        this.satuday = false
+        this.sunday = false
     }
 }
 
