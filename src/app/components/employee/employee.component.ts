@@ -15,22 +15,21 @@ export class EmployeeComponent {
 
   employee: EmployeeDto;
   workhour: WorkhourDto;
-  ext: boolean;
-  ext100: boolean
   id: string | null;
-  missing: boolean
-  holiday: boolean
   status: string[];
+  statusSelected: string;
+  enabledForm: boolean;
+  extForm: boolean;
+
   constructor(private employeeService: EmployeeService, private activateRoute: ActivatedRoute, private workService: WorkhourService, private router: Router) {
     this.employee = new EmployeeDto();
     this.workhour = new WorkhourDto();
     this.id = activateRoute.snapshot.paramMap.get('id');
     this.getById(String(this.id));
-    this.ext = false;
-    this.ext100 = false
-    this.missing = false
-    this.holiday = false
-    this.status = ['Feriado', 'Feriado 100%', 'Folga', 'Folga 100%', 'Falta', 'Sábado', 'Domingo'];
+    this.status = ['Normal','Feriado', 'Folga', 'Hora extra 100%', 'Hora extra 50%', 'Falta', 'Sábado', 'Domingo'];
+    this.statusSelected = '';
+    this.enabledForm = true;
+    this.extForm = false;
   }
 
   getById(id: string) {
@@ -40,60 +39,65 @@ export class EmployeeComponent {
     })
   }
 
-  extra() {
-    if (this.ext && this.ext100) {
-      this.ext = !this.ext
+  setStatus() {
+    switch (this.statusSelected) {
+      case 'Feriado': {
+        this.enabledForm = false;
+        this.extForm = false;
+      }
+        break;
+      case 'Folga': {
+        this.enabledForm = false;
+        this.extForm = false;
+      }
+        break;
+      case 'Hora extra 100%':{
+        this.enabledForm = true;
+        this.extForm = false;
+      }
+        break;
+      case 'Falta':{
+        this.enabledForm = false;
+        this.extForm = false;
+      }
+        break;
+      case 'Sábado': {
+        this.enabledForm = false;
+        this.extForm = false;
+      }
+        break;
+      case 'Sábado 50%': {
+        this.enabledForm = true;
+        this.extForm = false;
+      }
+        break;
+      case 'Hora extra 50%': {
+        this.enabledForm = true;
+        this.extForm = true;
+      }
+        break;
+      case 'Normal': {
+        this.enabledForm = true;
+        this.extForm = false;
+      }
+        break; 
+      case 'Domingo': {
+        this.enabledForm = false;
+        this.extForm = false;
+      }
+      break;
     }
-    this.ext100 = !this.ext100
-  }
-  extra50() {
-    this.ext = !this.ext
-    this.workhour.startExtra = this.workhour.leave
   }
 
   save() {
-    if (this.missing) {
-      this.workhour.missing = true;
-      this.workhour.entry = '00:00'
-      this.workhour.breakInit = '00:00'
-      this.workhour.breakEnd = '00:00'
-      this.workhour.leave = '00:00'
-      this.workhour.startExtra = '00:00'
-      this.workhour.endExtra = '00:00'
-    }
-    if(this.holiday) {
-      this.workhour.isHoliday = true;
-      this.workhour.entry = '00:00'
-      this.workhour.breakInit = '00:00'
-      this.workhour.breakEnd = '00:00'
-      this.workhour.leave = '00:00'
-      this.workhour.startExtra = '00:00'
-      this.workhour.endExtra = '00:00'
-    }
-    if (this.ext100 && !this.ext) {
-      this.workhour.isHoliday = true
-      this.workhour.startExtra = null
-      this.workhour.endExtra = null
-    } else if (this.ext100 && this.ext) {
-      this.workhour.startExtra = this.workhour.leave
-      this.workhour.isHoliday = false
-    }
-    console.log(this.workhour);
-    if (!this.isNull()) {
-      this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
-        next: res => { alert('Horário salvo'); this.router.navigate(['funcionarios']) }
-      })
-    } else {
-      alert('Preencha todos os campos')
-    }
-  }
-
-  setMissing() {
-    this.missing = !this.missing;
-  }
-
-  setHoliday() {
-    this.holiday = !this.holiday
+    
+    // if (!this.isNull()) {
+    //   this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
+    //     next: res => { alert('Horário salvo'); this.router.navigate(['funcionarios']) }
+    //   })
+    // } else {
+    //   alert('Preencha todos os campos')
+    // }
   }
 
   private isNull(): boolean {
