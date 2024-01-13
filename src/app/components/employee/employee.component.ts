@@ -26,7 +26,7 @@ export class EmployeeComponent {
     this.workhour = new WorkhourDto();
     this.id = activateRoute.snapshot.paramMap.get('id');
     this.getById(String(this.id));
-    this.status = ['Normal','Feriado', 'Folga', 'Hora extra 100%', 'Hora extra 50%', 'Falta', 'Sábado', 'Domingo'];
+    this.status = ['Normal','Feriado', 'Folga', 'Horaextra100', 'HoraExtraNormal', 'Sabado50', 'Falta', 'Sabado', 'Domingo'];
     this.statusSelected = '';
     this.enabledForm = true;
     this.extForm = false;
@@ -51,7 +51,7 @@ export class EmployeeComponent {
         this.extForm = false;
       }
         break;
-      case 'Hora extra 100%':{
+      case 'Horaextra100':{
         this.enabledForm = true;
         this.extForm = false;
       }
@@ -61,17 +61,17 @@ export class EmployeeComponent {
         this.extForm = false;
       }
         break;
-      case 'Sábado': {
+      case 'Sabado': {
         this.enabledForm = false;
         this.extForm = false;
       }
         break;
-      case 'Sábado 50%': {
+      case 'Sabado50': {
         this.enabledForm = true;
         this.extForm = false;
       }
         break;
-      case 'Hora extra 50%': {
+      case 'HoraExtraNormal': {
         this.enabledForm = true;
         this.extForm = true;
       }
@@ -90,14 +90,66 @@ export class EmployeeComponent {
   }
 
   save() {
-    
-    // if (!this.isNull()) {
-    //   this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
-    //     next: res => { alert('Horário salvo'); this.router.navigate(['funcionarios']) }
-    //   })
-    // } else {
-    //   alert('Preencha todos os campos')
-    // }
+    this.workhour.workhourStatus = this.statusSelected.toUpperCase();
+    switch (this.statusSelected) {
+      case 'Feriado': {
+        this.workhour.entry = '00:00:00'
+        this.workhour.breakInit = '00:00:00'
+        this.workhour.breakEnd = '00:00:00'
+        this.workhour.leave = '00:00:00'
+        this.workhour.startExtra = null
+        this.workhour.endExtra = null
+      }
+        break;
+      case 'Folga': {
+        this.workhour.entry = '00:00:00'
+        this.workhour.breakInit = '00:00:00'
+        this.workhour.breakEnd = '00:00:00'
+        this.workhour.leave = '00:00:00'
+        this.workhour.startExtra = null
+        this.workhour.endExtra = null
+      }
+        break;
+      case 'Falta':{
+        this.workhour.entry = '00:00:00'
+        this.workhour.breakInit = '00:00:00'
+        this.workhour.breakEnd = '00:00:00'
+        this.workhour.leave = '00:00:00'
+        this.workhour.startExtra = null
+        this.workhour.endExtra = null
+      }
+        break;
+      case 'Sabado': {
+        this.workhour.entry = '00:00:00'
+        this.workhour.breakInit = '00:00:00'
+        this.workhour.breakEnd = '00:00:00'
+        this.workhour.leave = '00:00:00'
+        this.workhour.startExtra = null
+        this.workhour.endExtra = null
+      }
+        break; 
+      case 'Domingo': {
+        this.workhour.entry = '00:00:00'
+        this.workhour.breakInit = '00:00:00'
+        this.workhour.breakEnd = '00:00:00'
+        this.workhour.leave = '00:00:00'
+        this.workhour.startExtra = null
+        this.workhour.endExtra = null
+      }
+      break;
+      case 'HoraExtraNormal': {
+        this.workhour.leave = this.workhour.startExtra!
+      }
+    }
+
+    console.log(this.workhour)
+     if (!this.isNull()) {
+       this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
+         next: res => { alert('Horário salvo'); this.router.navigate(['funcionarios']) }
+       })
+     } else {
+       alert('Preencha todos os campos')
+      }
   }
 
   private isNull(): boolean {

@@ -39,7 +39,8 @@ export class HoursComponent {
 
   delete(id: string) {
     this.service.delete(id).subscribe({
-      next: res => {this.router.navigate(['funcionarios'])}
+      next: res => {this.router.navigate(['funcionarios'])},
+      error: err => {this.router.navigate(['funcionarios'])}
     })
   }
 }

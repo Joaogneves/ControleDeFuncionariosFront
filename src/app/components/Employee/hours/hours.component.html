@@ -24,7 +24,7 @@
                     <th scope="col">Retorno</th>
                     <th scope="col">Saida</th>
                     <th scope="col">Hora extra</th>
-                    <th scope="col">Feriado</th>
+                    <th scope="col">Status</th>
                     <th></th>
                 </tr>
             </thead>
@@ -37,7 +37,7 @@
                     <td>{{w.leave}}</td>
                     <td>{{w.startExtra == null? '': w.startExtra + '/' + w.endExtra}}</td>
                     <td>
-                        {{w.isHoliday ? 'Feriado': ''}} {{w.missing ? 'Falta': '' }}
+                        {{w.workhourStatus}}
                     </td>
                     <td>
                         <div>

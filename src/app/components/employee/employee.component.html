@@ -33,17 +33,17 @@
                     <label for="breakEnd" class="form-label">Retorno</label>
                     <input type="time" class="form-control" id="breakEnd" [(ngModel)]="workhour.breakEnd">
                 </div>
-                <div class="mb-2">
-                    <label for="leave" class="form-label">Saida</label>
+                <div class="mb-2" *ngIf="!extForm">
+                    <label for="leave" class="form-label">Saída</label>
                     <input type="time" class="form-control" id="leave" [(ngModel)]="workhour.leave">
                 </div>
                 <div class="mb-2 d-flex w-100" *ngIf="extForm">
                     <div class="mb-2 w-50 me-1">
-                        <label for="startExtra" class="form-label">Inicio</label>
+                        <label for="startExtra" class="form-label">Inicio da Hora extra</label>
                         <input type="time" class="form-control" id="startExtra" [(ngModel)]="workhour.startExtra">
                     </div>
                     <div class="mb-2 w-50">
-                        <label for="endExtra" class="form-label">Fim</label>
+                        <label for="endExtra" class="form-label">Saída</label>
                         <input type="time" class="form-control" id="endExtra" [(ngModel)]="workhour.endExtra">
                     </div>
                 </div>
