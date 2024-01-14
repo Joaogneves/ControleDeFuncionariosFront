@@ -25,7 +25,7 @@
                     <th scope="col">Saida</th>
                     <th scope="col">Hora extra</th>
                     <th scope="col">Status</th>
-                    <th></th>
+                    <th><a class="btn btn-outline-primary me-2" href="funcionario/{{employeeId}}"><i class="bi bi-clock"></i> Novo registro</a></th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -41,8 +41,8 @@
                     </td>
                     <td>
                         <div>
-                            <button class="btn btn-outline-dark me-3"><i class="bi bi-pencil"></i></button>
-                            <button class="btn btn-outline-danger" (click)="delete(w.id)"><i class="bi bi-trash"></i></button>
+                            <a href="edithour/{{w.id}}" class="btn btn-outline-dark me-3"><i class="bi bi-pencil"></i></a>
+                            <button class="btn btn-outline-danger" (click)="confirmDelete(w.id)"><i class="bi bi-trash"></i></button>
                         </div>
                     </td>
                 </tr>

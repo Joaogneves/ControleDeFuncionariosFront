@@ -27,7 +27,7 @@ export class EmployeeComponent {
     this.id = activateRoute.snapshot.paramMap.get('id');
     this.getById(String(this.id));
     this.status = ['Normal','Feriado', 'Folga', 'Horaextra100', 'HoraExtraNormal', 'Sabado50', 'Falta', 'Sabado', 'Domingo'];
-    this.statusSelected = '';
+    this.statusSelected = 'Selecione um status';
     this.enabledForm = true;
     this.extForm = false;
   }

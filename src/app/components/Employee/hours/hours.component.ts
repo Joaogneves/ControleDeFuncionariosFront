@@ -37,6 +37,12 @@ export class HoursComponent {
     })
   }
 
+  confirmDelete(id: string) {
+    if(confirm("Deseja deletar esse horário ?")) {
+      this.delete(id);
+    } 
+  }
+
   delete(id: string) {
     this.service.delete(id).subscribe({
       next: res => {this.router.navigate(['funcionarios'])},
