@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { EditHourRoutingModule } from './edit-hour-routing.module';
 import { EditHourComponent } from './edit-hour.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { EditHourComponent } from './edit-hour.component';
   ],
   imports: [
     CommonModule,
-    EditHourRoutingModule
+    EditHourRoutingModule,
+    FormsModule
   ]
 })
 export class EditHourModule { }

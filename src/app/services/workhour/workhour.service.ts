@@ -13,6 +13,10 @@ export class WorkhourService {
     this.url = 'http://localhost:8080/api/workhour'
   }
 
+  getById(id: string): Observable<WorkhourResponseDto> {
+    return this.http.get<WorkhourResponseDto>(`${this.url}/${id}`)
+  }
+
   save(workhour: WorkhourDto, employeeId: string): Observable<WorkhourDto> {
     return this.http.post<WorkhourDto>(`${this.url}?employeeId=${employeeId}`, workhour)
   }
@@ -23,5 +27,9 @@ export class WorkhourService {
 
   delete(id: string) {
     return this.http.delete(`${this.url}/${id}`)
+  }
+
+  update(workhour: WorkhourDto): Observable<WorkhourDto> {
+    return this.http.put<WorkhourDto>(this.url, workhour);
   }
 }
