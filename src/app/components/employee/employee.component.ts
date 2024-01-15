@@ -141,8 +141,6 @@ export class EmployeeComponent {
         this.workhour.leave = this.workhour.startExtra!
       }
     }
-
-    console.log(this.workhour)
      if (!this.isNull()) {
        this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
          next: res => { alert('Horário salvo'); this.router.navigate(['funcionarios']) }

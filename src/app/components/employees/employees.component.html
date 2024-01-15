@@ -26,7 +26,8 @@
                     <td>
                         <a class="btn btn-outline-dark me-2" routerLink="editar/{{e.id}}"><i class="bi bi-pencil"></i></a>
                         <a class="btn btn-outline-dark me-2" routerLink="funcionario/{{e.id}}"><i class="bi bi-clock"></i></a>
-                        <a class="btn btn-outline-dark" href="horarios/{{e.id}}"><i class="bi bi-list-stars"></i></a>
+                        <a class="btn btn-outline-dark me-2" href="horarios/{{e.id}}"><i class="bi bi-list-stars"></i></a>
+                        <button class="btn btn-outline-danger" (click)="delete(e.id)"><i class="bi bi-trash"></i></button>
                     </td>
                 </tr>
             </tbody>

@@ -33,7 +33,7 @@ export class EditHourComponent {
   
   getWorhourById() {
     this.workService.getById(String(this.id)).pipe(take(1)).subscribe({
-      next: (res: WorkhourResponseDto) => {this.workhour = res; this.employee = res.employee;},
+      next: (res: WorkhourResponseDto) => {this.workhour = res; this.employee = res.employee; this.statusSelected = res.workhourStatus},
       error: err => {alert('Erro')}
     });
   }

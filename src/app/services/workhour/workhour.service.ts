@@ -32,4 +32,8 @@ export class WorkhourService {
   update(workhour: WorkhourDto): Observable<WorkhourDto> {
     return this.http.put<WorkhourDto>(this.url, workhour);
   }
+
+  finishAll(month: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.url}/endmonth?month=${month}`)
+  }
 }

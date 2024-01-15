@@ -9,13 +9,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { EditComponent } from './components/Employee/edit/edit.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FinishMonthComponent } from './components/finish-month/finish-month.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     EmployeeComponent,
-    EditComponent
+    EditComponent,
+    NotFoundComponent,
+    FinishMonthComponent
   ],
   imports: [
     BrowserModule,

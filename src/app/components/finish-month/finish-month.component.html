@@ -1,0 +1,47 @@
+<div class="d-flex w-100 justify-content-center align-items-center" style="height: 80vh;">
+    <div>
+        <h2 class="text-center">Se todas as marcações estiverem corretas, clique no botão para finalizar o mês.</h2>
+        <div class="d-flex w-100 justify-content-center mt-5">
+            <button type="button" class="btn btn-outline-success" (click)="setFinish()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Finalizar mês
+            </button>
+            <button type="button" class="btn btn-outline-primary ms-4" (click)="setReport()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Meses finalizados
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Escolha o mês que deseja {{modalFinish? 'finalizar': 'obter o relatório'}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"> 
+                <select class="form-control" [(ngModel)]="monthSelected">
+                    <option value="Selecione um mês" selected disabled>Selecione um mês</option>
+                    <option value="JANUARY">Janeiro</option>
+                    <option value="FEBRUARY">Fevereiro</option>
+                    <option value="MARCH">Março</option>
+                    <option value="APRIL">Abril</option>
+                    <option value="MAY">Maio</option>
+                    <option value="JUNE">Junho</option>
+                    <option value="JULY">Julho</option>
+                    <option value="AUGUST">Agosto</option>
+                    <option value="SEPTEMBER">Setembro</option>
+                    <option value="OCTOBER">Outubro</option>
+                    <option value="NOVEMBER">Novembro</option>
+                    <option value="DECEMBER">Dezembro</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" *ngIf="modalFinish" (click)="finish()">Finalizar</button>
+                <button type="button" class="btn btn-primary" *ngIf="modalReport">Relatório</button>
+            </div>
+        </div>
+    </div>
+</div>

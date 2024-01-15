@@ -40,4 +40,8 @@ export class EmployeeService {
     return this.http.get<EmployeeDto[]>(`${this.url}/search?workplace=${keyPress}`)
   }
 
+  delete(id: string): Observable<EmployeeDto> {
+    return this.http.delete<EmployeeDto>(`${this.url}/${id}`);
+  }
+
 }

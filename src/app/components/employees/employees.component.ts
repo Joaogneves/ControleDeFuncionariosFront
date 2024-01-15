@@ -34,4 +34,13 @@ export class EmployeesComponent {
       error: erro => {this.employees = []; alert(erro)}
     })
   }
+
+  delete(id:string) {
+    if(confirm("Deseja deletar?")) {
+      this.service.delete(id).pipe(take(1)).subscribe({
+        next: res => {location.href=''},
+        error: err => {location.href=''}
+      });
+    } 
+  }
 }
