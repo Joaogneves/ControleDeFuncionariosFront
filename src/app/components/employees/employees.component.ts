@@ -13,12 +13,14 @@ export class EmployeesComponent {
   employees: EmployeeDto[];
   id: number;
   searchKey:string
+  employeeSelected: EmployeeDto;
 
   constructor(private service: EmployeeService) {
     this.employees = []
     this.id = 0;
     this.searchKey = '';
     this.getEmployees();
+    this.employeeSelected = new EmployeeDto();
   }
 
 
@@ -35,12 +37,16 @@ export class EmployeesComponent {
     })
   }
 
+  selectEmployee(id: string, firstName: string, lastName: string) {
+    this.employeeSelected.firstName = firstName;
+    this.employeeSelected.lastName = lastName;
+    this.employeeSelected.id = id;
+  }
+
   delete(id:string) {
-    if(confirm("Deseja deletar?")) {
-      this.service.delete(id).pipe(take(1)).subscribe({
-        next: res => {location.href=''},
-        error: err => {location.href=''}
-      });
-    } 
+    this.service.delete(id).pipe(take(1)).subscribe({
+      next: res => {location.href=''},
+      error: err => {location.href=''}
+    });
   }
 }

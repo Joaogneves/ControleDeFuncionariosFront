@@ -36,8 +36,28 @@
                 <label for="work">Local da obra</label>
             </div>
             <div class="d-flex justify-content-between btn-group">
-                <button class="btn btn-outline-primary w-50" (click)="changeEmployee()">Salvar alterações</button>
+                <button class="btn btn-outline-primary w-50" data-bs-toggle="modal" data-bs-target="#modalConfirm">Salvar alterações</button>
             </div>
         </div>
     </div>
 </div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="modalConfirm" tabindex="-1" aria-labelledby="modalConfirm" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalConfirm">Desejá fazer as alterações?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+          <button type="button" class="btn btn-primary" (click)="changeEmployee()">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>

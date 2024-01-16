@@ -2,7 +2,8 @@
     <div class="w-75 mt-3">
         <h2 class="mb-4 text-center">Funcionários</h2>
         <div class="form-floating mb-3">
-            <input type="search" class="form-control" id="search" placeholder="Pesquisar" (keyup)="search()" [(ngModel)]="searchKey">
+            <input type="search" class="form-control" id="search" placeholder="Pesquisar" (keyup)="search()"
+                [(ngModel)]="searchKey">
             <label for="search">Procurar por Local da obra</label>
         </div>
         <table class="table table-hover">
@@ -24,13 +25,36 @@
                     <td>{{e.funcao}}</td>
                     <td>{{e.workPlace}}</td>
                     <td>
-                        <a class="btn btn-outline-dark me-2" routerLink="editar/{{e.id}}"><i class="bi bi-pencil"></i></a>
-                        <a class="btn btn-outline-dark me-2" routerLink="funcionario/{{e.id}}"><i class="bi bi-clock"></i></a>
-                        <a class="btn btn-outline-dark me-2" href="horarios/{{e.id}}"><i class="bi bi-list-stars"></i></a>
-                        <button class="btn btn-outline-danger" (click)="delete(e.id)"><i class="bi bi-trash"></i></button>
+                        <a class="btn btn-outline-dark me-2" routerLink="editar/{{e.id}}"><i
+                                class="bi bi-pencil"></i></a>
+                        <a class="btn btn-outline-dark me-2" routerLink="funcionario/{{e.id}}"><i
+                                class="bi bi-clock"></i></a>
+                        <a class="btn btn-outline-dark me-2" href="horarios/{{e.id}}"><i
+                                class="bi bi-list-stars"></i></a>
+                        <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#confirmModal" (click)="selectEmployee(e.id, e.firstName, e.lastName)"><i
+                                class="bi bi-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5 text-warning" id="confirmModal">Deseja excluir?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>O funcionário {{employeeSelected.firstName + ' ' + employeeSelected.lastName}} será excluído!</p>
+                <p>Tem certeza que deseja excluir?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Não</button>
+                <button type="button" class="btn btn-danger" (click)="delete(employeeSelected.id)">Sim</button>
+            </div>
+        </div>
     </div>
 </div>

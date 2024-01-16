@@ -4,33 +4,63 @@
         <div class="d-flex w-100 justify-content-center">
             <div class="w-50">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="nome" placeholder="Nome" [(ngModel)]="employee.firstName">
+                    <input type="text" class="form-control" id="nome" placeholder="Nome"
+                        [(ngModel)]="employee.firstName">
                     <label for="nome">Nome</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome" [(ngModel)]="employee.lastName">
+                    <input type="text" class="form-control" id="sobrenome" placeholder="Sobrenome"
+                        [(ngModel)]="employee.lastName">
                     <label for="sobrenome">Sobrenome</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input mask="000.000.000-00" type="text" class="form-control" id="CPF" placeholder="CPF" [(ngModel)]="employee.cpf">
+                    <input mask="000.000.000-00" type="text" class="form-control" id="CPF" placeholder="CPF"
+                        [(ngModel)]="employee.cpf">
                     <label for="CPF">CPF</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input mask="00.000.000/0000-00" type="text" class="form-control" id="CNPJ" placeholder="CNPJ" [(ngModel)]="employee.cnpj">
+                    <input mask="00.000.000/0000-00" type="text" class="form-control" id="CNPJ" placeholder="CNPJ"
+                        [(ngModel)]="employee.cnpj">
                     <label for="CNPJ">CNPJ</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="Funcao" placeholder="Função" [(ngModel)]="employee.funcao">
+                    <input type="text" class="form-control" id="Funcao" placeholder="Função"
+                        [(ngModel)]="employee.funcao">
                     <label for="Funcao">Função</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="work" placeholder="Local da obra" [(ngModel)]="employee.workPlace">
+                    <input type="text" class="form-control" id="work" placeholder="Local da obra"
+                        [(ngModel)]="employee.workPlace">
                     <label for="work">Local da obra</label>
                 </div>
                 <div class="d-flex justify-content-between btn-group">
-                    <button class="btn btn-outline-primary w-50" (click)="register()">Cadastrar</button>
+                    <button class="btn btn-outline-primary w-50" data-bs-toggle="modal" data-bs-target="#successRegisterModal" (click)="Confirm()">Cadastrar</button>
                     <button class="btn btn-outline-danger w-50" (click)="clear()">Limpar</button>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="successRegisterModal" tabindex="-1" aria-labelledby="successRegisterModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="successRegisterModal">Todas as informações estão corretas?</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p><span class="fw-bold">NOME: </span>{{employee.firstName}} {{employee.lastName}}</p>
+                <p><span class="fw-bold">CPF: </span>{{employee.cpf}}</p>
+                <p><span class="fw-bold">CNPJ: </span>{{employee.cnpj}}</p>
+                <p><span class="fw-bold">FUNÇÃO: </span>{{employee.funcao}}</p>
+                <p><span class="fw-bold">LOCAL DE OBRA: </span>{{employee.workPlace}}</p>
+
+                <p *ngIf="invalid" class="text-center text-danger">Informações inválidas</p>
+                <p *ngIf="message != ''" class="text-center text-danger">{{message}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" (click)="register()">Cadastrar</button>
             </div>
         </div>
     </div>

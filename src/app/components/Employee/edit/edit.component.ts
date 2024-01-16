@@ -28,7 +28,7 @@ export class EditComponent {
 
   changeEmployee() {
     this.service.changeEmployee(this.employee).pipe(take(1)).subscribe({
-      next: (res:EmployeeDto) => {this.employee = res, alert(`Funcionario ${this.employee.firstName} alterado com sucesso!`)},
+      next: (res:EmployeeDto) => {this.employee = res, location.href = ''},
       error: err => {alert(err)}
     })
   }

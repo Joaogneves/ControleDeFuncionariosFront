@@ -12,37 +12,50 @@ import { Router } from '@angular/router';
 export class RegisterEmployeeComponent {
 
   employee: EmployeeDto;
+  invalid: boolean;
+  message: string;
 
   constructor(private service: EmployeeService, private route: Router) {
     this.employee = new EmployeeDto();
+    this.invalid = false;
+    this.message = '';
   }
 
   register() {
-    if(this.allCheck()) {
-        alert('Preencha todos os campos');
-      } else {
-        this.service.register(this.employee)
-          .pipe(take(1))
-          .subscribe({
-            next: res => {
-              console.log(res);
-              alert(`Funcionário ${this.employee.firstName} cadastrado`);
-              this.route.navigate([''])
-            }, 
-            error: err => err.status === 500? alert('CPF ou CNPJ inválidos'): alert('Erro desconhecido ' + err.status)
+    if (this.allCheck()) {
+      this.invalid = true
+    } else {
+      this.service.register(this.employee)
+        .pipe(take(1))
+        .subscribe({
+          next: res => {
+            location.href = ''
+          },
+          error: err => err.status === 500 ? (this.message = 'CPF ou CNPJ inválidos', this.invalid = false): (this.message = 'Erro desconhecido ' + err.status, this.invalid = false)
         })
-      }
+    }
   }
 
   clear() {
     this.employee = new EmployeeDto()
   }
 
-  private allCheck() : boolean {
+  Confirm() {
+    if (this.allCheck()) {
+      this.invalid = true
+      this.message = ''
+    }
+    else {
+      this.invalid = false
+      this.message = ''
+    }
+  }
+
+  private allCheck(): boolean {
     return (
-      this.employee.firstName == '' || 
-      this.employee.lastName == '' || 
-      this.employee.cnpj == ''|| 
+      this.employee.firstName == '' ||
+      this.employee.lastName == '' ||
+      this.employee.cnpj == '' ||
       this.employee.cpf == '' ||
       this.employee.funcao == ''
     )
