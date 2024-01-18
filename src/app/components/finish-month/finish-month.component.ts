@@ -38,4 +38,8 @@ export class FinishMonthComponent {
       error: err => {alert("Erro"); console.log(err)}
     });
   }
+
+  reqReport() {
+    console.log(this.monthSelected)
+  }
 }

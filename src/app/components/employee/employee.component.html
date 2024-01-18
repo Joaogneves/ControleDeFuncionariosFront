@@ -9,6 +9,7 @@
             <a class="btn btn-outline-primary ms-2" href="horarios/{{employee.id}}">Horários</a>
         </div>
         <div class="col-8 p-5">
+            <button class="btn btn-outline-dark mb-2" (click)="autoComplete()">Padrão</button>
             <div class="form-floating">
                 <select class="form-select" id="floatingSelect" (change)="setStatus()" [(ngModel)]="statusSelected">
                   <option selected disabled>{{statusSelected}}</option>

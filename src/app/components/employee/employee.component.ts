@@ -26,7 +26,7 @@ export class EmployeeComponent {
     this.workhour = new WorkhourDto();
     this.id = activateRoute.snapshot.paramMap.get('id');
     this.getById(String(this.id));
-    this.status = ['Normal','Feriado', 'Folga', 'Horaextra100', 'HoraExtraNormal', 'Sabado50', 'Falta', 'Sabado', 'Domingo'];
+    this.status = ['Normal', 'Feriado', 'Folga', 'Horaextra100', 'HoraExtraNormal', 'Sabado50', 'Falta', 'Sabado', 'Domingo'];
     this.statusSelected = 'Selecione um status';
     this.enabledForm = true;
     this.extForm = false;
@@ -51,12 +51,12 @@ export class EmployeeComponent {
         this.extForm = false;
       }
         break;
-      case 'Horaextra100':{
+      case 'Horaextra100': {
         this.enabledForm = true;
         this.extForm = false;
       }
         break;
-      case 'Falta':{
+      case 'Falta': {
         this.enabledForm = false;
         this.extForm = false;
       }
@@ -80,12 +80,12 @@ export class EmployeeComponent {
         this.enabledForm = true;
         this.extForm = false;
       }
-        break; 
+        break;
       case 'Domingo': {
         this.enabledForm = false;
         this.extForm = false;
       }
-      break;
+        break;
     }
   }
 
@@ -110,7 +110,7 @@ export class EmployeeComponent {
         this.workhour.endExtra = null
       }
         break;
-      case 'Falta':{
+      case 'Falta': {
         this.workhour.entry = '00:00:00'
         this.workhour.breakInit = '00:00:00'
         this.workhour.breakEnd = '00:00:00'
@@ -127,7 +127,7 @@ export class EmployeeComponent {
         this.workhour.startExtra = null
         this.workhour.endExtra = null
       }
-        break; 
+        break;
       case 'Domingo': {
         this.workhour.entry = '00:00:00'
         this.workhour.breakInit = '00:00:00'
@@ -136,18 +136,40 @@ export class EmployeeComponent {
         this.workhour.startExtra = null
         this.workhour.endExtra = null
       }
-      break;
+        break;
       case 'HoraExtraNormal': {
         this.workhour.leave = this.workhour.startExtra!
       }
     }
-     if (!this.isNull()) {
-       this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
-         next: res => { alert('Horário salvo'); this.router.navigate(['funcionarios']) }
-       })
-     } else {
-       alert('Preencha todos os campos')
-      }
+    if (!this.isNull()) {
+      this.workService.save(this.workhour, String(this.id)).pipe(take(1)).subscribe({
+        next: res => { alert('Horário salvo'); this.router.navigate(['funcionarios']) }
+      })
+    } else {
+      alert('Preencha todos os campos')
+    }
+  }
+
+  autoComplete() {
+    let date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let nd;
+    let nm;
+    nd = String(day);
+    nm = String(month);
+    nm = nm.length == 1 ? `0${month}`: `${month}`
+    nd = nm.length == 1 ? `0${day}`: `${day}`
+    console.log()
+    this.statusSelected = 'Normal'
+    this.workhour.workDay = `${year}-${nm}-${nd}`
+    this.workhour.entry = '07:00'
+    this.workhour.breakInit = '12:00'
+    this.workhour.breakEnd = '13:00'
+    this.workhour.leave = '17:00'
+    this.workhour.startExtra = null
+    this.workhour.endExtra = null
   }
 
   private isNull(): boolean {
